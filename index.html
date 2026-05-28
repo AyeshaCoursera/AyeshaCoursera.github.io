@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoes</title>
+
+    <!-- Linking external CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <header>
+        <nav class="navbar">
+            <h1 class="logo">Shoes</h1>
+
+            <!-- Menu items -->
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Collection</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+            <!-- Mobile menu button -->
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        </nav>
+    </header>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero">
+        <div class="hero-text">
+            <h2>Step Into Style</h2>
+            <p>Discover the latest trends in footwear.</p>
+            <button onclick="showAlert()">Shop Now</button>
+        </div>
+    </section>
+
+    <!-- ===== PRODUCT SECTION ===== -->
+    <section class="products">
+        <h2>Our Collection</h2>
+
+        <div class="product-grid">
+            <!-- Each card represents a shoe -->
+            <div class="card">
+                <img src="image/redShoe.avif" alt="Shoe">
+                <h3>Running Shoes</h3>
+                <p>$99</p>
+            </div>
+
+            <div class="card">
+                <img src="image/redShoe.avif" alt="Shoe">
+                <h3>Casual Sneakers</h3>
+                <p>$79</p>
+            </div>
+
+            <div class="card">
+                <img src="image/redShoe.avif" alt="Shoe">
+                <h3>Sports Shoes</h3>
+                <p>$120</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>© 2026 Shoes. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Linking external JS -->
+    <script src="script.js"></script>
+</body>
+</html>
