@@ -1,74 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shoes</title>
-
-    <!-- Linking external CSS -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ayesha — Lead Generation, Digital Design, Social Media, Video & Animation portfolio.">
+  <meta property="og:title" content="Ayesha — Digital Portfolio">
+  <meta property="og:description" content="Lead Generation • Digital Design • Social Media • Video & Animation">
+  <meta property="og:type" content="website">
+  <title>Ayesha — Digital Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#08090d; --surface:#101219; --surface2:#151822; --text:#f5f7fb;
+      --muted:#9ca3b1; --line:rgba(255,255,255,.10); --accent:#b9ff66;
+      --accent2:#72e7ff; --max:1180px; --radius:24px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:"DM Sans",sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+    .noise{position:fixed;inset:0;pointer-events:none;opacity:.035;z-index:100;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+    .orb{position:fixed;width:520px;height:520px;border-radius:50%;filter:blur(100px);opacity:.10;pointer-events:none;background:var(--accent2);top:-260px;right:-180px}
+    .container{width:min(var(--max),calc(100% - 40px));margin:auto}
+    nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(8,9,13,.72);backdrop-filter:blur(18px);border-bottom:1px solid transparent;transition:.3s}
+    nav.scrolled{border-color:var(--line)}
+    .nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-family:"Space Grotesk";font-weight:700;font-size:21px;letter-spacing:-.04em}
+    .logo span{color:var(--accent)}
+    .nav-links{display:flex;gap:30px;color:#c9cdd6;font-size:14px}
+    .nav-links a{transition:.25s}.nav-links a:hover{color:var(--accent)}
+    .nav-cta{border:1px solid var(--line);padding:10px 17px;border-radius:999px;font-size:13px;transition:.25s}
+    .nav-cta:hover{background:var(--accent);color:#0a0b0e;border-color:var(--accent)}
+    .menu{display:none;background:none;border:0;color:white;font-size:25px}
+    .hero{min-height:100vh;display:flex;align-items:center;padding:150px 0 90px;position:relative}
+    .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:70px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);padding:8px 13px;border-radius:999px;color:#c9cdd6;font-size:12px;margin-bottom:25px;background:rgba(255,255,255,.025)}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 16px var(--accent)}
+    h1{font-family:"Space Grotesk";font-size:clamp(55px,8vw,104px);line-height:.92;letter-spacing:-.065em;max-width:900px}
+    h1 .accent{color:var(--accent)}
+    .hero-copy{max-width:630px;color:var(--muted);font-size:17px;line-height:1.75;margin:28px 0 35px}
+    .actions{display:flex;gap:13px;flex-wrap:wrap}
+    .btn{padding:14px 20px;border-radius:13px;font-weight:600;font-size:14px;border:1px solid var(--line);transition:.25s;cursor:pointer}
+    .btn-primary{background:var(--accent);color:#0a0b0e;border-color:var(--accent)}
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(185,255,102,.18)}
+    .btn-ghost:hover{border-color:#606675;transform:translateY(-3px)}
+    .hero-card{position:relative;min-height:440px;border:1px solid var(--line);border-radius:32px;background:linear-gradient(145deg,#151821,#0c0e13);padding:28px;overflow:hidden;transform-style:preserve-3d;transition:transform .15s}
+    .hero-card:before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:var(--accent);filter:blur(90px);opacity:.13;right:-80px;top:-80px}
+    .card-top{display:flex;justify-content:space-between;color:#8f96a6;font-size:12px}
+    .orbit{position:absolute;inset:70px 45px;border:1px dashed rgba(255,255,255,.12);border-radius:50%;animation:spin 18s linear infinite}
+    .orbit:before,.orbit:after{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:var(--accent)}
+    .orbit:before{top:10%;right:8%}.orbit:after{bottom:7%;left:12%;background:var(--accent2)}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .center-mark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:155px;height:155px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.15);background:rgba(8,9,13,.82);box-shadow:0 0 70px rgba(114,231,255,.08)}
+    .center-mark strong{font-family:"Space Grotesk";font-size:46px;letter-spacing:-.08em}
+    .floating{position:absolute;border:1px solid var(--line);background:rgba(18,20,28,.86);backdrop-filter:blur(10px);padding:12px 14px;border-radius:14px;font-size:12px;color:#d9dce4;animation:float 4s ease-in-out infinite}
+    .f1{left:22px;top:130px}.f2{right:20px;bottom:110px;animation-delay:-2s}.f3{left:35px;bottom:38px;animation-delay:-1s}
+    @keyframes float{50%{transform:translateY(-9px)}}
+    .ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap}
+    .ticker-track{display:inline-flex;gap:35px;padding:17px 0;animation:ticker 25s linear infinite;color:#888f9f;font-size:12px;text-transform:uppercase;letter-spacing:.16em}
+    .ticker-track b{color:var(--accent);font-weight:500}
+    @keyframes ticker{to{transform:translateX(-50%)}}
+    section{padding:115px 0}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:42px}
+    .kicker{color:var(--accent);font-size:12px;text-transform:uppercase;letter-spacing:.18em;margin-bottom:12px}
+    h2{font-family:"Space Grotesk";font-size:clamp(38px,5vw,66px);line-height:.98;letter-spacing:-.055em}
+    .section-head p{max-width:410px;color:var(--muted);line-height:1.65}
+    .services{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+    .service{min-height:245px;padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);position:relative;overflow:hidden;transition:.35s}
+    .service:hover{transform:translateY(-8px);border-color:rgba(185,255,102,.38);background:var(--surface2)}
+    .num{font-size:11px;color:#666d7c}.icon{font-size:28px;margin:40px 0 22px}.service h3{font-family:"Space Grotesk";font-size:18px;margin-bottom:10px}.service p{font-size:13px;color:var(--muted);line-height:1.55}
+    .service:after{content:"↗";position:absolute;right:22px;top:20px;color:#5d6472;transition:.25s}.service:hover:after{color:var(--accent);transform:translate(3px,-3px)}
+    .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .project{min-height:330px;border:1px solid var(--line);border-radius:28px;overflow:hidden;position:relative;background:var(--surface);cursor:pointer}
+    .project-visual{position:absolute;inset:0;background:radial-gradient(circle at 70% 25%,rgba(185,255,102,.22),transparent 25%),linear-gradient(135deg,#191d26,#0d0f14);transition:.5s}
+    .project:nth-child(2) .project-visual{background:radial-gradient(circle at 30% 25%,rgba(114,231,255,.22),transparent 25%),linear-gradient(135deg,#181c24,#0d0f14)}
+    .project:nth-child(3) .project-visual{background:radial-gradient(circle at 70% 70%,rgba(185,255,102,.17),transparent 25%),linear-gradient(135deg,#1b1820,#0d0f14)}
+    .project:nth-child(4) .project-visual{background:radial-gradient(circle at 30% 70%,rgba(114,231,255,.16),transparent 25%),linear-gradient(135deg,#171b22,#0d0f14)}
+    .project:hover .project-visual{transform:scale(1.05)}
+    .project-label{position:absolute;left:22px;top:20px;border:1px solid var(--line);background:rgba(8,9,13,.55);padding:7px 10px;border-radius:999px;font-size:11px}
+    .project-content{position:absolute;left:22px;right:22px;bottom:22px;display:flex;justify-content:space-between;align-items:end}
+    .project h3{font-family:"Space Grotesk";font-size:25px}.project p{font-size:12px;color:#a0a6b4;margin-top:5px}
+    .arrow{width:42px;height:42px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;transition:.3s}.project:hover .arrow{background:var(--accent);color:#0a0b0e;border-color:var(--accent);transform:rotate(45deg)}
+    .about{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:start}
+    .about-copy{color:var(--muted);line-height:1.8;font-size:16px}
+    .about-copy p+p{margin-top:18px}
+    .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:30px}
+    .stat{border:1px solid var(--line);border-radius:18px;padding:20px;background:var(--surface)}.stat strong{font-family:"Space Grotesk";font-size:35px}.stat span{display:block;color:var(--muted);font-size:12px;margin-top:5px}
+    .tools{display:flex;flex-wrap:wrap;gap:9px;margin-top:25px}.tool{border:1px solid var(--line);padding:9px 12px;border-radius:999px;color:#c0c5cf;font-size:12px}
+    .contact{border:1px solid var(--line);border-radius:34px;padding:70px 55px;background:linear-gradient(135deg,#141821,#0d0f14);position:relative;overflow:hidden}
+    .contact:after{content:"";position:absolute;width:300px;height:300px;border-radius:50%;background:var(--accent);filter:blur(110px);opacity:.08;right:-80px;bottom:-120px}
+    .contact h2{max-width:750px}.contact p{color:var(--muted);margin:22px 0 28px}
+    footer{padding:35px 0 45px;color:#707787;font-size:12px;display:flex;justify-content:space-between;border-top:1px solid var(--line)}
+    .reveal{opacity:0;transform:translateY(25px);transition:opacity .7s ease,transform .7s ease}.reveal.show{opacity:1;transform:none}
+    .cursor{position:fixed;pointer-events:none;width:18px;height:18px;border:1px solid var(--accent);border-radius:50%;z-index:99;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .2s,height .2s}
+    @media(max-width:900px){.hero-grid,.about{grid-template-columns:1fr}.hero-card{min-height:350px}.services{grid-template-columns:repeat(2,1fr)}.hero{padding-top:120px}.section-head{align-items:start;flex-direction:column}}
+    @media(max-width:600px){.container{width:min(100% - 28px,var(--max))}.nav-links,.nav-cta{display:none}.menu{display:block}.hero{min-height:auto;padding:125px 0 75px}h1{font-size:58px}.hero-copy{font-size:15px}.hero-card{min-height:320px}.services,.work-grid{grid-template-columns:1fr}.project{min-height:280px}.contact{padding:45px 25px}section{padding:80px 0}.cursor{display:none}footer{gap:15px;flex-direction:column}}
+  </style>
 </head>
 <body>
+  <div class="noise"></div><div class="orb"></div><div class="cursor" id="cursor"></div>
 
-    <!-- ===== NAVBAR ===== -->
-    <header>
-        <nav class="navbar">
-            <h1 class="logo">Shoes</h1>
+  <nav id="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="#home">AYESHA<span>.</span></a>
+      <div class="nav-links">
+        <a href="#work">Work</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a>
+      </div>
+      <a class="nav-cta" href="#contact">Let's Talk ↗</a>
+      <button class="menu" aria-label="Menu">☰</button>
+    </div>
+  </nav>
 
-            <!-- Menu items -->
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Collection</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-
-            <!-- Mobile menu button -->
-            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-        </nav>
-    </header>
-
-    <!-- ===== HERO SECTION ===== -->
-    <section class="hero">
-        <div class="hero-text">
-            <h2>Step Into Style</h2>
-            <p>Discover the latest trends in footwear.</p>
-            <button onclick="showAlert()">Shop Now</button>
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow"><span class="dot"></span> Available for freelance projects</div>
+          <h1>I TURN IDEAS<br>INTO <span class="accent">DIGITAL</span><br>EXPERIENCES.</h1>
+          <p class="hero-copy">Lead generation, visual design, social media and motion — I combine research, creativity and digital tools to help businesses look better and grow smarter.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#work">Explore My Work ↘</a>
+            <a class="btn btn-ghost" href="#contact">Start a Project</a>
+          </div>
         </div>
+        <div class="hero-card reveal" id="tilt">
+          <div class="card-top"><span>DIGITAL CREATIVE</span><span>2026</span></div>
+          <div class="orbit"></div>
+          <div class="center-mark"><strong>AR</strong></div>
+          <div class="floating f1">01 — Research</div>
+          <div class="floating f2">02 — Design</div>
+          <div class="floating f3">03 — Create</div>
+        </div>
+      </div>
     </section>
 
-    <!-- ===== PRODUCT SECTION ===== -->
-    <section class="products">
-        <h2>Our Collection</h2>
+    <div class="ticker">
+      <div class="ticker-track">
+        <span>Lead Generation</span><b>✦</b><span>Canva Design</span><b>✦</b><span>Graphic Design</span><b>✦</b><span>Social Media</span><b>✦</b><span>Video & Animation</span><b>✦</b>
+        <span>Lead Generation</span><b>✦</b><span>Canva Design</span><b>✦</b><span>Graphic Design</span><b>✦</b><span>Social Media</span><b>✦</b><span>Video & Animation</span><b>✦</b>
+      </div>
+    </div>
 
-        <div class="product-grid">
-            <!-- Each card represents a shoe -->
-            <div class="card">
-                <img src="image/redShoe.avif" alt="Shoe">
-                <h3>Running Shoes</h3>
-                <p>$99</p>
-            </div>
-
-            <div class="card">
-                <img src="image/redShoe.avif" alt="Shoe">
-                <h3>Casual Sneakers</h3>
-                <p>$79</p>
-            </div>
-
-            <div class="card">
-                <img src="image/redShoe.avif" alt="Shoe">
-                <h3>Sports Shoes</h3>
-                <p>$120</p>
-            </div>
+    <section id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><div class="kicker">01 / What I Do</div><h2>Five skills.<br>One creative toolkit.</h2></div>
+          <p>From finding the right prospects to designing the final visual, I can support different parts of your digital workflow.</p>
         </div>
+        <div class="services">
+          <article class="service reveal"><span class="num">01</span><div class="icon">⌁</div><h3>Lead Generation</h3><p>Prospect research, list building, data enrichment and targeted lead generation.</p></article>
+          <article class="service reveal"><span class="num">02</span><div class="icon">◈</div><h3>Canva Design</h3><p>Social posts, presentations, marketing graphics and editable Canva templates.</p></article>
+          <article class="service reveal"><span class="num">03</span><div class="icon">✦</div><h3>Graphic Design</h3><p>Logos, flyers, brochures and promotional materials created with CorelDRAW.</p></article>
+          <article class="service reveal"><span class="num">04</span><div class="icon">◎</div><h3>Social Media</h3><p>Content planning, creative posts, captions, hashtags and publishing support.</p></article>
+          <article class="service reveal"><span class="num">05</span><div class="icon">▶</div><h3>Video & Animation</h3><p>Reels, promotional videos, motion graphics and interface animations.</p></article>
+        </div>
+      </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
-    <footer>
-        <p>© 2026 Shoes. All Rights Reserved.</p>
-    </footer>
+    <section id="work">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><div class="kicker">02 / Selected Work</div><h2>A few things<br>I’ve created.</h2></div>
+          <p>Real projects will replace these visual placeholders. Each card can later open a dedicated project or category page.</p>
+        </div>
+        <div class="work-grid">
+          <article class="project reveal"><div class="project-visual"></div><span class="project-label">Lead Generation</span><div class="project-content"><div><h3>Prospect Research</h3><p>Research • Enrichment • Data</p></div><div class="arrow">↗</div></div></article>
+          <article class="project reveal"><div class="project-visual"></div><span class="project-label">Canva Design</span><div class="project-content"><div><h3>Social Campaign</h3><p>Content • Visuals • Templates</p></div><div class="arrow">↗</div></div></article>
+          <article class="project reveal"><div class="project-visual"></div><span class="project-label">Graphic Design</span><div class="project-content"><div><h3>Brand & Print</h3><p>Logo • Flyer • Marketing</p></div><div class="arrow">↗</div></div></article>
+          <article class="project reveal"><div class="project-visual"></div><span class="project-label">Video & Animation</span><div class="project-content"><div><h3>Motion Content</h3><p>Reels • Animation • Video</p></div><div class="arrow">↗</div></div></article>
+        </div>
+      </div>
+    </section>
 
-    <!-- Linking external JS -->
-    <script src="script.js"></script>
+    <section id="about">
+      <div class="container about">
+        <div class="reveal"><div class="kicker">03 / About Me</div><h2>Researcher.<br>Designer.<br>Problem solver.</h2></div>
+        <div class="reveal">
+          <div class="about-copy">
+            <p>I’m a digital freelancer working across lead generation, data research, design, social media and visual content. My work sits at the intersection of structured research and creative execution.</p>
+            <p>I like turning messy requirements into organized data, clear visuals and practical digital assets that are ready to use.</p>
+          </div>
+          <div class="stats">
+            <div class="stat"><strong>7+</strong><span>Years of experience</span></div>
+            <div class="stat"><strong>5</strong><span>Core service areas</span></div>
+            <div class="stat"><strong>∞</strong><span>Ideas to explore</span></div>
+            <div class="stat"><strong>24/7</strong><span>Curiosity mode</span></div>
+          </div>
+          <div class="tools">
+            <span class="tool">Canva</span><span class="tool">CorelDRAW</span><span class="tool">Excel</span><span class="tool">Google Sheets</span><span class="tool">LinkedIn</span><span class="tool">Apollo</span><span class="tool">Video Tools</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container reveal">
+        <div class="contact">
+          <div class="kicker">04 / Let's Work Together</div>
+          <h2>Have a project in mind?<br>Let’s make it happen.</h2>
+          <p>Tell me what you’re building, what you need help with, or simply say hello.</p>
+          <a class="btn btn-primary" href="mailto:your-email@example.com">Get in Touch ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container"><span>© 2026 Ayesha. All rights reserved.</span><span>Built with curiosity + creativity.</span></footer>
+
+  <script>
+    const nav=document.getElementById('nav');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20));
+    const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    const cursor=document.getElementById('cursor');
+    document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});
+    document.querySelectorAll('a,button,.project,.service').forEach(el=>{
+      el.addEventListener('mouseenter',()=>{cursor.style.width='34px';cursor.style.height='34px'});
+      el.addEventListener('mouseleave',()=>{cursor.style.width='18px';cursor.style.height='18px'});
+    });
+
+    const tilt=document.getElementById('tilt');
+    if(window.matchMedia('(pointer:fine)').matches){
+      tilt.addEventListener('mousemove',e=>{
+        const r=tilt.getBoundingClientRect(), x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+        tilt.style.transform=`perspective(900px) rotateY(${x*8}deg) rotateX(${-y*8}deg)`;
+      });
+      tilt.addEventListener('mouseleave',()=>tilt.style.transform='');
+    }
+  </script>
 </body>
 </html>
